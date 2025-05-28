@@ -1,0 +1,85 @@
+version: '3.8'
+
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.3.2
+    container_name: zookeeper
+    ports:
+      - "12181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+
+  kafka:
+    image: confluentinc/cp-kafka:7.3.2
+    container_name: kafka
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+
+  kafka-topic-creator:
+    image: confluentinc/cp-kafka:7.3.2
+    container_name: kafka-topic-creator
+    depends_on:
+      - kafka
+    command: >
+      bash -c "
+        echo 'Waiting for Kafka...' &&
+        cub kafka-ready -b kafka:9092 1 120 &&
+        echo 'Kafka ready!' &&
+        kafka-topics --create --if-not-exists --topic retail-transactions --bootstrap-server kafka:9092 --partitions 1 --replication-factor 1 &&
+        echo 'Topic retail-transactions created.'
+      "
+
+  spark-master:
+    image: bitnami/spark:3.3
+    container_name: spark-master
+    ports:
+      - "8080:8080"
+      - "7077:7077"
+    environment:
+      - SPARK_MODE=master
+    volumes:
+      - ./app:/app
+
+  spark-worker:
+    image: bitnami/spark:3.3
+    container_name: spark-worker
+    depends_on:
+      - spark-master
+    ports:
+      - "8081:8081"
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER_URL=spark://spark-master:7077
+    volumes:
+      - ./app:/app
+
+  producer-retail:
+    build:
+      context: ./app
+      dockerfile: Dockerfile.producers
+    container_name: producer-retail
+    command: python producer_retail.py
+    depends_on:
+      - kafka-topic-creator
+    volumes:
+      - ./app:/app
+    environment:
+      KAFKA_BROKERS: kafka:9092
+
+  spark-consumer:
+    image: bitnami/spark:3.3
+    container_name: spark-consumer
+    depends_on:
+      - spark-master
+      - kafka-topic-creator
