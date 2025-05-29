@@ -1,0 +1,29 @@
+FROM python:3.10-slim
+
+WORKDIR /app
+
+# Install Java (required for Spark)
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    default-jdk wget && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Set JAVA_HOME
+ENV JAVA_HOME=/usr/lib/jvm/default-java
+
+# Download Spark dependencies (trainer might need Spark for reading batch files)
+RUN mkdir -p /opt/spark/jars && \
+    wget -O /opt/spark/jars/spark-sql-kafka-0-10_2.12-3.5.0.jar https://repo1.maven.org/maven2/org/apache/spark/spark-sql-kafka-0-10_2.12/3.5.0/spark-sql-kafka-0-10_2.12-3.5.0.jar && \
+    wget -O /opt/spark/jars/kafka-clients-3.4.0.jar https://repo1.maven.org/maven2/org/apache/kafka/kafka-clients/3.4.0/kafka-clients-3.4.0.jar
+
+# Set Spark environment
+ENV SPARK_HOME=/usr/local/lib/python3.10/site-packages/pyspark
+ENV PYSPARK_SUBMIT_ARGS="--jars /opt/spark/jars/spark-sql-kafka-0-10_2.12-3.5.0.jar,/opt/spark/jars/kafka-clients-3.4.0.jar pyspark-shell"
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . /app
+
+CMD ["python", "src/trainer.py"]

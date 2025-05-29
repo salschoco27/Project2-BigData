@@ -1,0 +1,17 @@
+{
+  "model_1": {
+    "data_size": 35,
+    "silhouette_score": 0.7871488688103957,
+    "training_time": "2025-05-29T19:42:01.672117"
+  },
+  "model_2": {
+    "data_size": 70,
+    "silhouette_score": 0.6816302590614131,
+    "training_time": "2025-05-29T19:42:01.967174"
+  },
+  "model_3": {
+    "data_size": 107,
+    "silhouette_score": 0.6799052380890496,
+    "training_time": "2025-05-29T19:42:02.210676"
+  }
+}

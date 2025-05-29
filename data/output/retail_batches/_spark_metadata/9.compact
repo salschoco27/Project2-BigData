@@ -1,0 +1,11 @@
+v1
+{"path":"file:///app/data/output/retail_batches/part-00000-52b471ae-5f43-45e5-a030-1d827df7e983-c000.json","size":579964,"isDir":false,"modificationTime":1748544003155,"blockReplication":1,"blockSize":33554432,"action":"add"}
+{"path":"file:///app/data/output/retail_batches/part-00000-eca03980-ab64-4e5d-a04c-7ba45b4a9cb7-c000.json","size":1938,"isDir":false,"modificationTime":1748544006976,"blockReplication":1,"blockSize":33554432,"action":"add"}
+{"path":"file:///app/data/output/retail_batches/part-00000-bfdf351c-4290-4529-a0b4-20ddc3577961-c000.json","size":5324,"isDir":false,"modificationTime":1748544031562,"blockReplication":1,"blockSize":33554432,"action":"add"}
+{"path":"file:///app/data/output/retail_batches/part-00000-9168efa6-9f99-4917-973d-a762e634f0df-c000.json","size":5786,"isDir":false,"modificationTime":1748544061493,"blockReplication":1,"blockSize":33554432,"action":"add"}
+{"path":"file:///app/data/output/retail_batches/part-00000-b2c7aa27-95be-46fa-acda-5cc0b5e97c4a-c000.json","size":6023,"isDir":false,"modificationTime":1748544091255,"blockReplication":1,"blockSize":33554432,"action":"add"}
+{"path":"file:///app/data/output/retail_batches/part-00000-f6bcc1a9-e543-4dc9-a97d-2521b26f708e-c000.json","size":5829,"isDir":false,"modificationTime":1748544121095,"blockReplication":1,"blockSize":33554432,"action":"add"}
+{"path":"file:///app/data/output/retail_batches/part-00000-b8dd32d3-cd79-43cc-a813-7d9c7c3046ce-c000.json","size":5793,"isDir":false,"modificationTime":1748544151062,"blockReplication":1,"blockSize":33554432,"action":"add"}
+{"path":"file:///app/data/output/retail_batches/part-00000-6e2065b8-5968-42cb-b4e6-7ad039f4c10e-c000.json","size":5667,"isDir":false,"modificationTime":1748544181272,"blockReplication":1,"blockSize":33554432,"action":"add"}
+{"path":"file:///app/data/output/retail_batches/part-00000-0706b9f4-359d-461a-9df4-9f431c575537-c000.json","size":5624,"isDir":false,"modificationTime":1748544211348,"blockReplication":1,"blockSize":33554432,"action":"add"}
+{"path":"file:///app/data/output/retail_batches/part-00000-ed81e3bb-ba3c-448b-9257-206fc0c8f71b-c000.json","size":5982,"isDir":false,"modificationTime":1748544241538,"blockReplication":1,"blockSize":33554432,"action":"add"}

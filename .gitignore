@@ -1,0 +1,100 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Data files (keep structure but ignore actual data)
+data/raw/*.xlsx
+data/raw/*.csv
+data/raw/*.json
+data/output/retail_batches/*.json
+data/output/checkpoint/
+data/models/*.pkl
+data/models/*.joblib
+
+# Logs
+*.log
+logs/
+
+# Docker
+.dockerignore
+
+# MacOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Windows
+*.tmp
+*.temp
+
+# Kafka/Zookeeper data
+kafka-logs/
+zookeeper-data/
+
+# Spark
+metastore_db/
+derby.log
+spark-warehouse/
+
+# Keep important config and structure files
+!data/
+!data/raw/
+!data/output/
+!data/output/retail_batches/
+!data/models/
+!data/raw/.gitkeep
+!data/output/.gitkeep
+!data/models/.gitkeep
+
+# Keep model info but not the actual models
+!data/models/models_info.json
+
+# Temporary files
+tmp/
+temp/
