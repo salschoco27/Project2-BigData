@@ -45,11 +45,12 @@ venv.bak/
 .env.*.local
 
 # Data files (keep structure but ignore actual data)
-data/raw/*.xlsx
-data/raw/*.csv
-data/raw/*.json
 data/output/retail_batches/*.json
-data/output/checkpoint/
+data/output/retail_batches/*.parquet
+data/output/retail_batches/.part-*
+data/output/retail_batches/part-*
+data/output/retail_batches/_*
+data/output/checkpoint/*
 data/models/*.pkl
 data/models/*.joblib
 
